@@ -13,6 +13,7 @@ android.api = 31
 android.minapi = 24
 android.archs = arm64-v8a
 android.permissions = INTERNET
+android.accept_sdk_license = True
 presplash.color = #0f0f18
 
 [buildozer]
