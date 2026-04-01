@@ -11,18 +11,20 @@ jobs:
   build-apk:
     runs-on: ubuntu-22.04
     timeout-minutes: 90
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: "3.11"
 
       - name: Cache Buildozer
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: |
             .buildozer
@@ -38,12 +40,13 @@ jobs:
           sudo apt-get install -y \
             git zip unzip openjdk-17-jdk autoconf libtool pkg-config \
             zlib1g-dev libncurses5-dev libncursesw5-dev libtinfo6 cmake \
-            libffi-dev libssl-dev
+            libffi-dev libssl-dev python3-virtualenv automake \
+            autopoint gettext
 
       - name: Install Python dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install buildozer cython==0.29.36
+          pip install buildozer Cython==0.29.36 virtualenv
 
       - name: Build debug APK
         run: buildozer android debug
