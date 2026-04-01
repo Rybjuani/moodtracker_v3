@@ -26,8 +26,8 @@ jobs:
       - name: Set up Android SDK
         uses: android-actions/setup-android@v3
         with:
-          accept-android-sdk-licenses: "yes"
-          log-accepted-android-sdk-licenses: "false"
+          accept-android-sdk-licenses: true
+          log-accepted-android-sdk-licenses: false
 
       - name: Cache Buildozer
         uses: actions/cache@v5
